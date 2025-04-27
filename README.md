@@ -31,7 +31,7 @@ echo PORT=3000 > .env
 npm run dev
 ```
 
-# How to run run Frontend (Vue3)
+# How to run Frontend (Vue3)
 **1. Go into the project directory**
 ```bash
 cd fronend
