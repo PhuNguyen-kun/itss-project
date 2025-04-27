@@ -1,5 +1,4 @@
 ## How to clone the repository
-```bash
 git clone <your-repo-url>
 
 ## How to run Backend (Expressjs)
