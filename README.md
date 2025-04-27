@@ -1,6 +1,6 @@
 # How to clone the repository
 ```bash
-git clone <repo-url>
+git clone https://github.com/PhuNguyen-kun/itss-project.git
 ```
 # How to run Backend (Expressjs)
 **1. Go into the project directory**
@@ -34,7 +34,7 @@ npm run dev
 # How to run Frontend (Vue3)
 **1. Go into the project directory**
 ```bash
-cd fronend
+cd frontend
 ```
 **2. Install dependencies**
 ```bash
