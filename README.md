@@ -1,34 +1,48 @@
-## How to clone the repository
-git clone <your-repo-url>
-
-## How to run Backend (Expressjs)
-**Go into the project directory**
+# How to clone the repository
+```bash
+git clone <repo-url>
+```
+# How to run Backend (Expressjs)
+**1. Go into the project directory**
+```bash
 cd backend
-
-** Initialize Node.js project**
+```
+**2. Initialize Node.js project**
+```bash
 npm init -y
-
-**Install dependencies**
+```
+**3. Install dependencies**
+```bash
 npm install express dotenv express-validator
 npm install --save-dev nodemon
-
-**Create .env file**
+```
+**4. Create .env file**
+```bash
 echo PORT=3000 > .env
-
-**Update package.json:**
+```
+**5. Update package.json**
+```bash
 "scripts": {
    "dev": "nodemon src/server.js"
 }
-
-**Run development server**
+```
+**6.Run development server**
+```bash
 npm run dev
+```
 
-## How to run run Frontend (Vue3)
-**1.Go into the project directory**
-cd frontend
-
-**Install dependencies**
+# How to run run Frontend (Vue3)
+**1. Go into the project directory**
+```bash
+cd fronend
+```
+**2. Install dependencies**
+```bash
 npm install
+```
+**3. Development Server**
 
-**3.Run development server**
+Start the development server on `http://localhost:5173`:
+```bash
 npm run dev
+```
