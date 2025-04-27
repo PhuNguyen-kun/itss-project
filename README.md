@@ -2,13 +2,13 @@
 git clone <your-repo-url>
 
 ## How to run Backend (Expressjs)
-1. Go into the project directory
+# Go into the project directory
 cd backend
 
-2. Initialize Node.js project
+# Initialize Node.js project
 npm init -y
 
-3. Install dependencies
+# Install dependencies
 npm install express dotenv express-validator
 npm install --save-dev nodemon
 
