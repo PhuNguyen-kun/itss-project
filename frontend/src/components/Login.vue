@@ -7,23 +7,25 @@ const password = ref<string>('')
 
 function handleLogin() {
   alert(`Logging in with ${email.value}`)
-  
+
 }
 </script>
 
-<template >
+<template>
   <div class="login-container">
     <div class="left-panel">
-      <img src="@/assets/2.jpg" alt="Shopping cart" />
-      <h2>Meal Planner for Busy Lives.</h2>
-      <p>Plan meals, create shopping lists effortlessly.</p>
+      <div class="overlay">
+        <h2>Meal Planner for Busy Lives.</h2>
+        <p>Plan meals, create shopping lists effortlessly.</p>
+      </div>
+
     </div>
     <div class="right-panel">
+      <div class="title-box">
+        <h1>Meal</h1>
+        <small>Recipes Galore</small>
+      </div>
       <div class="login-box">
-        <div class="title-box">
-          <h1>Meal</h1>
-          <small>Recipes Galore</small>
-        </div>
         <h2>Log in</h2>
         <form @submit.prevent="handleLogin">
           <label for="email">Email</label>
@@ -34,38 +36,47 @@ function handleLogin() {
 
           <button class="button" type="submit">Log in</button>
           <a class="forgot" href="#">Forgot your password?</a>
-          
+
           <router-link class="button button-2" to="/register">Create account</router-link>
         </form>
       </div>
-    </div> 
+    </div>
   </div>
 </template>
 
 <style scoped>
 .login-container {
   display: flex;
-  height: 100vh;
+  height: 96vh;
   font-family: 'Segoe UI', sans-serif;
-  padding: 20px;
+  margin: 2vh;
+  border: 1px solid var(--color-purple);
 }
 
 .left-panel {
   width: 50%;
   flex: 1;
-  background: #a020f0;
-  color: white;
-  padding: 3rem;
+  background: url('@/assets/mealplan.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  align-content: center;
+  padding: 3rem;
 }
 
-.left-panel img {
-  width: 70%;
-  max-width: 300px;
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--color-white);
+  padding: 0.5rem;
+  border-radius: 10px;
+  max-width: 90%;
+  backdrop-filter: blur(2px);
 }
 
 .right-panel {
+  position: relative;
   width: 50%;
   flex: 1;
   padding: 3rem;
@@ -74,14 +85,18 @@ function handleLogin() {
   align-items: center;
 }
 
+.title-box {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
 .login-box {
   width: 100%;
   max-width: 320px;
 }
 
-.login-box .title-box{
-  text-align: right;
-}
+
 
 .login-box h1 {
   font-weight: bold;
@@ -102,56 +117,57 @@ input {
   padding: 0.6rem;
   margin: 0.5rem 0 1rem;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-gray);
 }
 
 .button {
   width: 100%;
   padding: 0.7rem;
-  background: #a020f0;
-  color: white;
+  background: var(--color-purple);
+  color: var(--color-white);
   border: none;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: ease 0.5s;
-  border: 1px solid #a020f0;
+  border: 1px solid var(--color-purple);
 }
 
-.button:hover{
-  background: white;
-  color: #a020f0;
-  border: 1px solid #999;
+.button:hover {
+  background: var(--color-white);
+  color: var(--color-purple);
+  border: 1px solid var(--color-gray);
 }
 
-.button-2{
-  background: white;
-  color: #a020f0;
-  border: 1px solid #999;
+.button-2 {
+  background: var(--color-white);
+  color: var(--color-purple);
+  border: 1px solid var(--color-gray);
 }
 
-.button-2:hover{
-  background: #a020f0;
-  color: white;
+.button-2:hover {
+  background: var(--color-purple);
+  color: var(--color-white);
 }
 
-.forgot, a {
+.forgot,
+a {
   display: block;
   position: relative;
   margin-top: 1rem;
-  color: #999;
+  color: var(--color-gray-2);
   text-align: center;
   font-size: 0.9rem;
 }
 
-.forgot::after{
+.forgot::after {
   content: '';
   position: absolute;
   left: 15%;
   bottom: -0.5rem;
-  width: 70%;      
+  width: 70%;
   height: 1px;
-  background-color: #a020f0; 
+  background-color: var(--color-purple);
   border-radius: 2px;
 }
 </style>
