@@ -19,10 +19,19 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --vt-c-purple-1: #a020f0;
+  --vt-c-gray-1: #ccc;
+  --vt-c-gray-2: #999
 }
 
 /* semantic color variables for this project */
 :root {
+  --color-white: var(--vt-c-white);
+  --color-purple: var(--vt-c-purple-1);
+  --color-gray: var(--vt-c-gray-1);
+  --color-gray-2: var(--vt-c-gray-2)
+
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -35,6 +44,7 @@
 
   --section-gap: 160px;
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
