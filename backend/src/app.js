@@ -1,18 +1,21 @@
 const express = require("express");
 const helloRoute = require("./routes/hello.route");
+const dishRoutes = require("./routes/dishRoutes");
 const errorHandler = require("./middlewares/error.middleware");
 
 const app = express();
 
-// Middleware parse body
 app.use(express.json());
 
-// Routes
+// Gắn route
 app.use("/api", helloRoute);
+app.use("/api/dishes", dishRoutes); // ✅ Route danh sách món ăn
 
-// Handle 404
+console.log("✅ Routes mounted: /api, /api/dishes");
+
+// 404 handler
 app.use((req, res, next) => {
-    res.status(404).json({ message: "Not Found" });
+  res.status(404).json({ message: "Not Found" });
 });
 
 // Global error handler
