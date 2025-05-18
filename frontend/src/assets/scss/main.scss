@@ -1,0 +1,67 @@
+@use 'reset.scss';
+@use 'button.scss';
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+*,
+html {
+  box-sizing: border-box;
+  font-family: 'Exo 2', sans-serif;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.user-theme {
+  font-family: 'Poppins', sans-serif;
+}
+
+body.admin-theme {
+  line-height: 1.6;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+:root {
+  /*  Admin  */
+  --admin-theme-color: #4880ff;
+  // --user-theme-color: #e88b27;
+  --user-theme-color: #8e20d8;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 560;
+  color: #333;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
