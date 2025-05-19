@@ -1,19 +1,19 @@
 <template>
   <div class="family-manager">
     <div class="family-manager__header">
-      <h2 class="family-manager__title">Family Manager</h2>
+      <h2 class="family-manager__title">Quản lí gia đình</h2>
       <div class="family-manager__buttons">
-        <button class="user-btn btn-action">Add Member</button>
-        <button class="user-btn btn-action">Edit Member</button>
-        <button class="user-btn btn-action">Delete Member</button>
+        <button class="user-btn btn-action">Thêm thành viên</button>
+        <button class="user-btn btn-action">Chỉnh sửa thành viên</button>
+        <button class="user-btn btn-action">Xóa thành viên</button>
       </div>
     </div>
     <div class="family-manager__list">
       <div v-for="member in members" :key="member.id" class="member-card">
         <img :src="member.avatar" alt="avatar" class="member-card__avatar" />
         <div class="member-card__name">{{ member.name }}</div>
-        <div class="member-card__age">Age: {{ member.age }}</div>
-        <div class="member-card__relationship">Relationship: {{ member.relationship }}</div>
+        <div class="member-card__gender">Giới tính: {{ member.gender }}</div>
+        <div class="member-card__role">Vai trò: {{ member.role }}</div>
       </div>
     </div>
   </div>
@@ -24,22 +24,25 @@ const members = [
   {
     id: 1,
     name: 'Maria Gonzalez',
+    gender: 'Nữ',
     age: 42,
-    relationship: 'Mother',
+    role: 'Người nội trợ',
     avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
   },
   {
     id: 2,
     name: 'Carlos Gonzalez',
+    gender: 'Nam',
     age: 16,
-    relationship: 'Son',
+    role: 'Thành viên',
     avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
   },
   {
     id: 3,
     name: 'Lucia Gonzalez',
+    gender: 'Nữ',
     age: 12,
-    relationship: 'Daughter',
+    role: 'Thành viên',
     avatar: 'https://randomuser.me/api/portraits/women/33.jpg',
   },
 ]
@@ -108,8 +111,8 @@ const members = [
   margin-bottom: 5px;
 }
 
-.member-card__age,
-.member-card__relationship {
+.member-card__gender,
+.member-card__role {
   font-size: 14px;
   color: #666;
 }
