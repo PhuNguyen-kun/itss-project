@@ -22,6 +22,11 @@ const userRoutes: RouteRecordRaw[] = [
         name: 'dish-detail',
         component: () => import('@/views/User/DishDetail.vue'),
       },
+      {
+        path: '/family-manager',
+        name: 'family-manager',
+        component: () => import('@/views/User/FamilyManager.vue'),
+      },
     ],
   },
   {
