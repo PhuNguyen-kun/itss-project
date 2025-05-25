@@ -1,6 +1,10 @@
 const { faker } = require("@faker-js/faker");
+const bcrypt = require("bcryptjs");
 
 function userFactory(familyIds = []) {
+    const password = "12345678";
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
     return {
         full_name: faker.person.fullName(),
         email: faker.internet.email(),
@@ -12,6 +16,7 @@ function userFactory(familyIds = []) {
         google_id: faker.string.uuid(),
         family_id: faker.helpers.arrayElement(familyIds),
         family_role: faker.helpers.arrayElement([1, 2]), // 1: housekeeper, 2: family member
+        password: hashedPassword,
         createdAt: new Date(),
         updatedAt: new Date(),
     };
