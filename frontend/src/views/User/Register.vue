@@ -1,7 +1,10 @@
 <template>
   <el-row class="register">
     <el-col :span="8" class="register__image">
-      <!-- <img src="@/assets/img/banner-auth.png" alt="register" /> -->
+      <div class="overlay">
+        <h2>Meal Planner for Busy Lives.</h2>
+        <p>Plan meals, create shopping lists effortlessly.</p>
+      </div>
     </el-col>
     <el-col :span="16" class="register__main">
       <div class="register__main--form">
@@ -153,12 +156,23 @@ const handleRegister = async () => {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: url('../../assets/img/User/mealplan.jpg') no-repeat center center;
+  background-size: cover;
   background-color: var(--user-theme-color);
   img {
     width: 100%;
     height: 100vh;
     object-fit: contain;
   }
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  max-width: 90%;
+  backdrop-filter: blur(2px);
 }
 
 .register__main {

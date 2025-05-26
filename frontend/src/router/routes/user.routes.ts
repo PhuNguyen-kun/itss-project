@@ -35,6 +35,11 @@ const userRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/User/MealPlan.vue'),
         beforeEnter: requireAuth,
       },
+      {
+        path: '/fridge',
+        name: 'fridge',
+        component: () => import('@/views/User/Fridge.vue')
+      }
     ],
   },
   {
