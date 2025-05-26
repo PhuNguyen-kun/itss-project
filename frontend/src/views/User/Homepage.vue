@@ -16,7 +16,10 @@
         <p>Với hơn 100 món ăn và hàng trăm nguyên liệu khác nhau dành cho bạn.</p>
       </div>
       <div class="homepage__section">
-        <h2 class="homepage__section--title">Món ăn nổi bật</h2>
+        <div class="homepage__section--header">
+          <h2 class="homepage__section--title">Tất cả món ăn</h2>
+          <router-link to="/dishes"><button class="user-btn">Xem tất cả</button></router-link>
+        </div class="homepage__section--header">
         <el-row :gutter="20" v-loading="loading">
           <el-col
             v-for="dish in dishes"
@@ -39,8 +42,8 @@
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import DishCard from '@/components/User/DishCard.vue'
-import { getAllDishes } from '@/services/Dish/dishService'
-import type { Dish } from '@/types/Dish/dish'
+import { getAllDishes } from '@/services/User/dishService'
+import type { Dish } from '@/types/User/dish'
 
 const carouselImages = [
   '/carousel-1.webp',
@@ -62,7 +65,7 @@ const fetchDishes = async () => {
     }
   } catch (error) {
     console.error('Failed to fetch featured dishes:', error)
-    ElMessage.error('Không thể tải món ăn nổi bật. Vui lòng thử lại sau.')
+    ElMessage.error('Không thể tải tất cả món ăn. Vui lòng thử lại sau.')
   } finally {
     loading.value = false
   }
@@ -95,6 +98,13 @@ onMounted(() => {
   &__section {
     margin-top: 50px;
     margin-bottom: 50px;
+
+    &--header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
     &--title {
       font-size: 20px;

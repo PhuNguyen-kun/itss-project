@@ -4,7 +4,6 @@ const userRoute = require("./routes/user");
 const errorHandler = require("./middlewares/error.middleware");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const mealPlanRoutes = require('./routes/mealPlan.route');  
 const app = express();
 
 // Middleware parse body
@@ -16,13 +15,10 @@ app.use(cors({ credentials: true, origin: true }));
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
-app.use('/api/meal-plan', mealPlanRoutes);
 // Handle 404
 app.use((req, res, next) => {
     res.status(404).json({ message: "Not Found" });
 });
-
-
 
 // Global error handler
 app.use(errorHandler);

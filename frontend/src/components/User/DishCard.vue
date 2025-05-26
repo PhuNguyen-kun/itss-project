@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Dish } from '@/types/Dish/dish'
+import type { Dish } from '@/types/User/dish'
 
 const props = defineProps<{
   dish: Dish
