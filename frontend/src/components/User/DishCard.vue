@@ -1,6 +1,6 @@
 <template>
   <router-link :to="`/dishes/${dish.slug}`" class="dish-card-link">
-    <el-card class="dish-card" :body-style="{ padding: '0px' }">
+    <el-card class="dish-card" :body-style="{ padding: '0px'}">
       <div class="dish-card__image-container">
         <img
           :src="dish.image_url || '/default-dish.jpg'"
@@ -11,6 +11,9 @@
       <div class="dish-card__content">
         <h3 class="dish-card__title">{{ dish.name }}</h3>
         <p class="dish-card__description">{{ truncatedDescription }}</p>
+      </div>
+      <div class="dish-card__action">
+          <img src="../../assets/img/User/shopping-cart.png" alt="" class="add">
       </div>
     </el-card>
   </router-link>
@@ -41,6 +44,7 @@ const truncatedDescription = computed(() => {
 }
 
 .dish-card {
+  position: relative;
   height: 100%;
   transition:
     transform 0.3s ease,
@@ -88,6 +92,16 @@ const truncatedDescription = computed(() => {
     color: #666;
     margin: 0;
     flex-grow: 1;
+  }
+
+  &__action{
+    right: 5px;
+    bottom: 5px;
+    position: absolute;
+    img{
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 </style>
