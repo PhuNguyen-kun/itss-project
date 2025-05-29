@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "postgres",
-        "password": "123456",
+        "password": "admin",
         "database": "itss_project_db",
         "host": "localhost",
         "dialect": "postgres"

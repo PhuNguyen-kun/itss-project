@@ -7,6 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 console.log("Available models:", Object.keys(db));
 
 exports.verifyToken = (req, res, next) => {
+
     try {
         const authHeader = req.headers["authorization"];
         if (!authHeader) {
