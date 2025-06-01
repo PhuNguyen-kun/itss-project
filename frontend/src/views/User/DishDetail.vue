@@ -66,8 +66,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getDishBySlug } from '@/services/Dish/dishService'
-import type { Dish } from '@/types/Dish/dish'
+import { getDishBySlug } from '@/services/User/dishService'
+import type { Dish } from '@/types/User/dish'
 import { messageError, messageSuccess } from '@/composables/notifications'
 import BreadCrumb from '@/components/User/BreadCrumb.vue'
 

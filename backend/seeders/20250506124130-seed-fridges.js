@@ -1,19 +1,28 @@
 "use strict";
 
-const fridgeFactory = require("../factories/fridge.factory");
-const { Family, Ingredient } = require("../models");
-
 module.exports = {
     async up(queryInterface, Sequelize) {
-        const families = await Family.findAll();
-        const ingredients = await Ingredient.findAll();
-        const familyIds = families.map((family) => family.id);
-        const ingredientIds = ingredients.map((ingredient) => ingredient.id);
+        const now = new Date();
+        const fridges = [];
 
-        const data = Array.from({ length: 80 }).map(() =>
-            fridgeFactory(familyIds, ingredientIds)
-        );
-        await queryInterface.bulkInsert("fridges", data, {});
+        for (let family_id = 1; family_id <= 30; family_id++) {
+            for (let i = 0; i < 3; i++) {
+                const ingredient_id = (((family_id - 1) * 3 + i) % 150) + 1;
+                const unit = (ingredient_id % 5) + 1;
+                const quantity = 100 + i * 50; // 100, 150, 200
+
+                fridges.push({
+                    family_id,
+                    ingredient_id,
+                    quantity,
+                    unit,
+                    createdAt: now,
+                    updatedAt: now,
+                });
+            }
+        }
+
+        await queryInterface.bulkInsert("fridges", fridges, {});
     },
 
     async down(queryInterface, Sequelize) {

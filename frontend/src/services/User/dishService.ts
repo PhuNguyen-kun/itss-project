@@ -1,5 +1,5 @@
 import axiosInstance from '@/utils/axiosInstance'
-import type { DishResponse, DishDetailResponse } from '@/types/Dish/dish'
+import type { DishResponse, DishDetailResponse } from '@/types/User/dish'
 
 interface GetDishesParams {
   page?: number

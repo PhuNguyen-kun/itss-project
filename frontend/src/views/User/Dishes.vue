@@ -26,8 +26,8 @@
 import { ref, onMounted, computed } from 'vue'
 import BreadCrumb from '@/components/User/BreadCrumb.vue'
 import DishCard from '@/components/User/DishCard.vue'
-import { getAllDishes } from '@/services/Dish/dishService'
-import type { Dish } from '@/types/Dish/dish'
+import { getAllDishes } from '@/services/User/dishService'
+import type { Dish } from '@/types/User/dish'
 import { messageError } from '@/composables/notifications'
 
 const breadcrumbItems = computed(() => [

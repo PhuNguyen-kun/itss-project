@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { requireAuth } from '@/router/guards/auth.guard'
 
 const userRoutes: RouteRecordRaw[] = [
   {
@@ -26,6 +27,13 @@ const userRoutes: RouteRecordRaw[] = [
         path: '/family-manager',
         name: 'family-manager',
         component: () => import('@/views/User/FamilyManager.vue'),
+        beforeEnter: requireAuth,
+      },
+      {
+        path: '/meal-plan',
+        name: 'meal-plan',
+        component: () => import('@/views/User/MealPlan.vue'),
+        beforeEnter: requireAuth,
       },
     ],
   },
