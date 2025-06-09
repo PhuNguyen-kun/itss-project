@@ -24,12 +24,7 @@ const getAllFavorites = async (req, res, next) => {
 const getFavoritesByUserId = async (req, res, next) => {
     try {
         const userId = parseInt(req.params.user_id);
-        console.log("▶️ req.id =", req.id);
-        console.log("▶️ req.user =", req.user);
-        console.log("▶️ userId =", userId);
-
-
-        // Sử dụng req.id.id vì bạn đang gán như vậy trong middleware
+        
         if (String(req.id.id) !== String(userId)) {
             return responseError(res, "Unauthorized", 403);
         }
