@@ -30,3 +30,4 @@ exports.getDishBySlug = asyncHandler(async (req, res) => {
 
     return responseOk(res, dish, "Dish retrieved successfully");
 });
+

@@ -1,8 +1,13 @@
 const { MealPlan, Dish, Family } = require("../../../models");
 const { Op } = require("sequelize");
 
-// Lấy danh sách meal plan, kèm dish và family
-exports.getMealPlan = async () => {
+/**
+ * Get meal plans by family ID
+ * @param {Number} familyId - Family ID
+ * @param {Object} options - Additional options
+ * @returns {Promise<Array>} - List of meal plans for the specified family
+ */
+const getMealPlan = async () => {
     return await MealPlan.findAll({
         include: [
             {
@@ -26,7 +31,7 @@ exports.getMealPlan = async () => {
  * @param {Object} options - Additional options
  * @returns {Promise<Array>} - List of meal plans for the specified family
  */
-exports.getMealPlansByFamilyId = async (familyId, options = {}) => {
+const getMealPlansByFamilyId = async (familyId, options = {}) => {
     const queryOptions = {
         where: {
             family_id: familyId,
@@ -60,11 +65,17 @@ exports.getMealPlansByFamilyId = async (familyId, options = {}) => {
 };
 
 // Thêm mới một meal plan
-exports.addToMealPlan = async ({ family_id, dish_id, date, meal_type }) => {
+const addToMealPlan = async ({ family_id, dish_id, date, meal_type }) => {
     return await MealPlan.create({
         family_id,
         dish_id,
         date,
         meal_type,
     });
+};
+
+module.exports = {
+    getMealPlan,
+    getMealPlansByFamilyId,
+    addToMealPlan
 };

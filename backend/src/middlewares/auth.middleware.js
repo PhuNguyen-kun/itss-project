@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 const authConfig = require("../config/auth.config");
 const { responseOk, responseError } = require("../utils/apiResponse");
 const db = require("../../models");
 const JWT_SECRET = process.env.JWT_SECRET;
-
+const fs = require('fs');
 console.log("Available models:", Object.keys(db));
 
 exports.verifyToken = (req, res, next) => {
@@ -18,6 +19,7 @@ exports.verifyToken = (req, res, next) => {
         if (!token) {
             return responseError(res, "Token missing", 401);
         }
+        console.log(JWT_SECRET);
 
         jwt.verify(token, JWT_SECRET, (err, decoded) => {
             if (err) {

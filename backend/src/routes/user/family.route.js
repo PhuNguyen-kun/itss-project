@@ -28,4 +28,11 @@ router.get("/me", verifyToken, familyController.getMyFamily);
  */
 router.get("/:id", familyController.getFamilyById);
 
+/**
+ * @route POST /api/user/families
+ * @desc Create a new family for the logged-in user
+ * @access Private
+ */
+router.post("/", verifyToken, familyController.createFamily);
+
 module.exports = router;
