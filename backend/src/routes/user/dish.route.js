@@ -12,10 +12,11 @@ const dishController = require("../../controllers/user/dish.controller");
 router.get("/", dishController.getAllDishes);
 
 /**
- * @route GET /api/user/dishes/:id
+ * @route GET /api/user/dishes/:slug
  * @desc Get dish by id
  * @access Public
  */
 router.get("/:slug", dishController.getDishBySlug);
+
 
 module.exports = router;

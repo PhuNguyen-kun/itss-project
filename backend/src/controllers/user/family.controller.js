@@ -11,7 +11,7 @@ const ApiError = require("../../utils/ApiError");
  * Get all families with pagination
  * @route GET /api/user/families
  */
-exports.getAllFamilies = asyncHandler(async (req, res) => {
+exports.getAllFamilies = async (req, res) => {
     const result = await paginate(req, familyService.getAllFamilies);
 
     return responseOk(
@@ -21,13 +21,13 @@ exports.getAllFamilies = asyncHandler(async (req, res) => {
         200,
         result.pagination
     );
-});
+};
 
 /**
  * Get family by ID
  * @route GET /api/user/families/:id
  */
-exports.getFamilyById = asyncHandler(async (req, res) => {
+exports.getFamilyById = async (req, res) => {
     const { id } = req.params;
 
     const family = await familyService.getFamilyById(id);
@@ -37,13 +37,13 @@ exports.getFamilyById = asyncHandler(async (req, res) => {
     }
 
     return responseOk(res, family, "Family retrieved successfully");
-});
+};
 
 /**
  * Get family of the currently logged-in user
  * @route GET /api/user/families/me
  */
-exports.getMyFamily = asyncHandler(async (req, res) => {
+exports.getMyFamily = async (req, res) => {
     // Get the user ID from the request object (set by auth middleware)
     const userId = req.user.id;
 
@@ -58,4 +58,32 @@ exports.getMyFamily = asyncHandler(async (req, res) => {
     }
 
     return responseOk(res, family, "User's family retrieved successfully");
-});
+};
+
+/**
+ * Create a family for the currently logged-in user
+ * @route POST /api/user/families
+ */
+exports.createFamily = async (req, res) => {
+    // Get the user ID from the request object (set by auth middleware)
+    const userId = req.user.id;
+
+    if (!userId) {
+        throw new ApiError(401, "User not authenticated");
+    }
+
+    // Extract only the family name from the request body
+    const { name } = req.body;
+
+    if (!name) {
+        throw new ApiError(400, "Family name is required");
+    }
+
+    const newFamily = await familyService.createFamily(name);
+
+    if (!newFamily) {
+        throw new ApiError(400, "Failed to create family");
+    }
+
+    return responseOk(res, newFamily, "Family created successfully");
+};
