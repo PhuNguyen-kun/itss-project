@@ -69,3 +69,28 @@ exports.addToMealPlan = async (req, res) => {
         res.status(500).json({ error: "Lỗi server khi thêm meal plan" });
     }
 };
+
+/**
+ * Delete a meal plan by ID
+ * @route DELETE /api/user/meal-plans/:id
+ * @param {Number} req.params.id - Meal plan ID to delete
+ * @returns {Object} - Confirmation message
+ */
+exports.deleteMealPlan = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        throw new ApiError(400, "Meal plan ID is required");
+    }
+
+    const result = await mealPlanService.deleteMealPlan(id);
+
+    if (!result) {
+        throw new ApiError(
+            404,
+            "Không tìm thấy kế hoạch bữa ăn hoặc không có quyền xóa"
+        );
+    }
+
+    return responseOk(res, null, "Xóa kế hoạch bữa ăn thành công");
+});

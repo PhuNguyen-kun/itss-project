@@ -42,3 +42,12 @@ export const getDishBySlug = async (slug: string): Promise<DishDetailResponse> =
     throw error
   }
 }
+
+export const getFavoriteDishes = async (params?: GetDishesParams) => {
+  try {
+    const response = await axiosInstance.get('/user/favorites', { params })
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}

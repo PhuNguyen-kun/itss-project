@@ -17,6 +17,26 @@
       </div>
       <div class="homepage__section">
         <div class="homepage__section--header">
+          <h2 class="homepage__section--title">Top món ăn được yêu thích nhất</h2>
+          <!-- <router-link to="/dishes"><button class="user-btn">Xem tất cả</button></router-link> -->
+        </div class="homepage__section--header">
+        <el-row :gutter="20" v-loading="loading">
+          <el-col
+            v-for="dish in favoriteDishes"
+            :key="dish.id"
+            :xs="24"
+            :sm="12"
+            :md="8"
+            :lg="6"
+            class="dish-col"
+          >
+            <DishCard :dish="dish" />
+          </el-col>
+        </el-row>
+      </div>
+
+            <div class="homepage__section">
+        <div class="homepage__section--header">
           <h2 class="homepage__section--title">Tất cả món ăn</h2>
           <router-link to="/dishes"><button class="user-btn">Xem tất cả</button></router-link>
         </div class="homepage__section--header">
@@ -34,6 +54,7 @@
           </el-col>
         </el-row>
       </div>
+
     </div>
   </div>
 </template>
@@ -42,7 +63,7 @@
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import DishCard from '@/components/User/DishCard.vue'
-import { getAllDishes } from '@/services/User/dishService'
+import { getAllDishes, getFavoriteDishes } from '@/services/User/dishService'
 import type { Dish } from '@/types/User/dish'
 
 const carouselImages = [
@@ -54,6 +75,7 @@ const carouselImages = [
 ]
 
 const dishes = ref<Dish[]>([])
+const favoriteDishes = ref<Dish[]>([])
 const loading = ref(false)
 
 const fetchDishes = async () => {
@@ -71,8 +93,25 @@ const fetchDishes = async () => {
   }
 }
 
+const fetchFavoriteDishes = async () => {
+  loading.value = true
+  try {
+    const response = await getFavoriteDishes({ per_page: 8, page: 1 })
+    if (response.success && response.data) {
+      // @ts-ignore
+      favoriteDishes.value = response.data.map(favorite => favorite.dish)
+    }
+  } catch (error) {
+    console.error('Failed to fetch favorite dishes:', error)
+    ElMessage.error('Không thể tải món ăn yêu thích. Vui lòng thử lại sau.')
+  } finally {
+    loading.value = false
+  }
+}
+
 onMounted(() => {
   fetchDishes()
+  fetchFavoriteDishes()
 })
 </script>
 

@@ -12,10 +12,13 @@
           <router-link to="/dishes">Món ăn</router-link>
         </el-col>
         <el-col :span="4">
+          <router-link to="/favorites">Yêu thích</router-link>
+        </el-col>
+        <el-col :span="4">
           <router-link to="/meal-plan">Kế hoạch</router-link>
         </el-col>
         <el-col :span="4">
-          <router-link to="">Giỏ hàng</router-link>
+          <router-link to="/cart">Giỏ hàng</router-link>
         </el-col>
       </el-row>
     </el-col>
@@ -45,7 +48,12 @@
             <el-dropdown-item>
               <router-link to="/family-manager">Gia đình</router-link>
             </el-dropdown-item>
-            <el-dropdown-item>Action 3</el-dropdown-item>
+            <el-dropdown-item>
+              <router-link to="/fridge">Tủ lạnh</router-link>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <router-link to="/favorites">Món ăn yêu thích</router-link>
+            </el-dropdown-item>
             <el-dropdown-item divided @click="handleLogout">
               <span class="logout-item">Đăng xuất</span>
             </el-dropdown-item>

@@ -1,4 +1,4 @@
-const { Fridge, Dish, DishIngredient, Ingredient } =  require("../../../models");
+const { Fridge, Dish, DishIngredient, Ingredient } = require("../../../models");
 
 /**
  * Get dishes that can be cooked based on ingredients in the family's fridge
@@ -9,7 +9,7 @@ const getDishesFromFridge = async (familyId) => {
     // Get ingredients in fridge for the family
     const fridgeItems = await Fridge.findAll({
         where: { family_id: familyId },
-        attributes: ['ingredient_id', 'quantity', 'unit'],
+        attributes: ["ingredient_id", "quantity", "unit"],
     });
 
     if (!fridgeItems.length) {
@@ -21,12 +21,12 @@ const getDishesFromFridge = async (familyId) => {
         include: [
             {
                 model: DishIngredient,
-                as: 'dish_ingredients',
-                attributes: ['ingredient_id', 'quantity', 'unit'],
+                as: "dish_ingredients",
+                attributes: ["ingredient_id", "quantity", "unit"],
             },
         ],
-        attributes: ['id', 'name', 'slug', 'image_url'],
-        order: [['name', 'ASC']],
+        attributes: ["id", "name", "slug", "image_url"],
+        order: [["name", "ASC"]],
     });
 
     // Filter dishes that can be cooked
@@ -35,7 +35,9 @@ const getDishesFromFridge = async (familyId) => {
             const requiredIngredients = dish.dish_ingredients;
             return requiredIngredients.every((reqIng) => {
                 const fridgeItem = fridgeItems.find(
-                    (item) => item.ingredient_id === reqIng.ingredient_id && item.unit === reqIng.unit
+                    (item) =>
+                        item.ingredient_id === reqIng.ingredient_id &&
+                        item.unit === reqIng.unit
                 );
                 return fridgeItem && fridgeItem.quantity >= reqIng.quantity;
             });
@@ -97,6 +99,25 @@ const addToFridge = async ({ family_id, ingredient_id, quantity, unit }) => {
 };
 
 /**
+ * Get all fridge items for a family with ingredient details
+ * @param {Number} familyId - ID of the family
+ * @returns {Promise<Array>} - Array of fridge items with ingredient details
+ */
+const getFamilyFridgeItems = async (familyId) => {
+    return await Fridge.findAll({
+        where: { family_id: familyId },
+        include: [
+            {
+                model: Ingredient,
+                as: "ingredient",
+                attributes: ["id", "name", "image_url"],
+            },
+        ],
+        order: [["updatedAt", "DESC"]],
+    });
+};
+
+/**
  * Delete an ingredient from fridge
  * @param {Object} fridgeData - Fridge data
  * @param {Number} fridgeData.family_id - ID of the family
@@ -110,4 +131,10 @@ const deleteFromFridge = async ({ family_id, ingredient_id, unit }) => {
     });
 };
 
-module.exports = { getDishesFromFridge, createFridge, addToFridge, deleteFromFridge };
+module.exports = {
+    getDishesFromFridge,
+    createFridge,
+    addToFridge,
+    deleteFromFridge,
+    getFamilyFridgeItems,
+};

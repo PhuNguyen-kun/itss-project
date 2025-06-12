@@ -74,8 +74,24 @@ const addToMealPlan = async ({ family_id, dish_id, date, meal_type }) => {
     });
 };
 
+/**
+ * Delete a meal plan by ID
+ * @param {Number} id - Meal plan ID to delete
+ * @returns {Boolean} - True if deleted, false if not found
+ */
+const deleteMealPlan = async (id) => {
+    const mealPlan = await MealPlan.findByPk(id);
+    if (!mealPlan) {
+        return false;
+    }
+
+    await mealPlan.destroy();
+    return true;
+};
+
 module.exports = {
     getMealPlan,
     getMealPlansByFamilyId,
-    addToMealPlan
+    addToMealPlan,
+    deleteMealPlan,
 };

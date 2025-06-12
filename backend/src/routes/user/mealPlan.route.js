@@ -31,4 +31,11 @@ router.get(
  */
 router.post("/", mealPlanController.addToMealPlan);
 
+/**
+ * @route DELETE /api/user/meal-plans/:id
+ * @desc Delete a meal plan by id
+ * @access Private
+ */
+router.delete("/:id", verifyToken, mealPlanController.deleteMealPlan);
+
 module.exports = router;

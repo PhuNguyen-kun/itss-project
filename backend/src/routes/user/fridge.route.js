@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const fridgeController = require('../../controllers/user/fridge.controller');
-const { verifyToken } = require('../../middlewares/auth.middleware');
+const fridgeController = require("../../controllers/user/fridge.controller");
+const { verifyToken } = require("../../middlewares/auth.middleware");
 
 /**
  * @route GET /api/user/fridge/:familyId/dishes
@@ -12,7 +12,7 @@ const { verifyToken } = require('../../middlewares/auth.middleware');
  * @query {Number} per_page - Number of dishes per page (default: 10)
  * @access Private
  */
-router.get('/:family_id/dishes', fridgeController.getDishesFromFridge);
+router.get("/:family_id/dishes", fridgeController.getDishesFromFridge);
 
 /**
  * @route POST /api/user/fridge
@@ -23,7 +23,7 @@ router.get('/:family_id/dishes', fridgeController.getDishesFromFridge);
  * @body {Number} unit - Unit of the ingredient
  * @access Private
  */
-router.post('/', fridgeController.createFridge);
+router.post("/", fridgeController.createFridge);
 
 /**
  * @route PUT /api/fridge
@@ -34,7 +34,7 @@ router.post('/', fridgeController.createFridge);
  * @body {Number} unit - Unit of the ingredient
  * @access Private
  */
-router.put('/', fridgeController.addToFridge);
+router.put("/", fridgeController.addToFridge);
 
 /**
  * @route DELETE /api/fridge
@@ -44,6 +44,18 @@ router.put('/', fridgeController.addToFridge);
  * @body {Number} unit - Unit of the ingredient
  * @access Private
  */
-router.delete('/', fridgeController.deleteFromFridge);
+router.delete("/", fridgeController.deleteFromFridge);
+
+/**
+ * @route GET /api/user/fridge/family/:familyId
+ * @desc Get all fridge items for a family
+ * @param {Number} familyId - Family ID
+ * @access Private
+ */
+router.get(
+    "/family/:familyId",
+    verifyToken,
+    fridgeController.getFamilyFridgeItems
+);
 
 module.exports = router;

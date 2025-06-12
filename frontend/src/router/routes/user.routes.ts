@@ -36,10 +36,21 @@ const userRoutes: RouteRecordRaw[] = [
         beforeEnter: requireAuth,
       },
       {
+        path: '/cart',
+        name: 'cart',
+        component: () => import('@/views/User/Cart.vue'),
+        beforeEnter: requireAuth,
+      },
+      {
         path: '/fridge',
         name: 'fridge',
-        component: () => import('@/views/User/Fridge.vue')
-      }
+        component: () => import('@/views/User/Fridge.vue'),
+      },
+      {
+        path: '/favorites',
+        name: 'favorites',
+        component: () => import('@/views/User/Favorites.vue'),
+      },
     ],
   },
   {

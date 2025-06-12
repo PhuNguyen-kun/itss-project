@@ -56,11 +56,49 @@
         </div>
 
         <div class="action-buttons">
-          <button @click="addToMealPlan" class="user-btn">Thêm vào danh sách món ăn</button>
+          <button @click="showAddToMealPlanModal" class="user-btn">Thêm vào kế hoạch bữa ăn</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Add to Meal Plan Modal -->
+  <el-dialog
+    v-model="showMealPlanModal"
+    title="Thêm món ăn vào kế hoạch bữa ăn"
+    width="400px"
+    :close-on-click-modal="false"
+    append-to-body
+  >
+    <div class="add-meal-plan-form">
+      <el-form :model="newMealPlan" label-width="100px">
+        <el-form-item label="Ngày:">
+          <el-date-picker
+            v-model="newMealPlan.date"
+            type="date"
+            placeholder="Chọn ngày"
+            format="DD/MM/YYYY"
+            value-format="YYYY-MM-DD"
+            style="width: 100%"
+            :disabled-date="disabledDate"
+          />
+        </el-form-item>
+        <el-form-item label="Bữa ăn:">
+          <el-select v-model="newMealPlan.meal_type" placeholder="Chọn bữa ăn" style="width: 100%">
+            <el-option :value="1" label="Bữa sáng" />
+            <el-option :value="2" label="Bữa trưa" />
+            <el-option :value="3" label="Bữa tối" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div class="dialog-footer">
+        <el-button @click="showMealPlanModal = false">Hủy</el-button>
+        <el-button type="primary" @click="confirmAddToMealPlan" :loading="addingToMealPlan">
+          Xác nhận
+        </el-button>
+      </div>
+    </div>
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
@@ -68,13 +106,27 @@ import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getDishBySlug } from '@/services/User/dishService'
 import type { Dish } from '@/types/User/dish'
+import { addMealPlan } from '@/services/User/mealPlanService'
+import { getMyFamily } from '@/services/User/familyService'
 import { messageError, messageSuccess } from '@/composables/notifications'
+import { ElMessage } from 'element-plus'
 import BreadCrumb from '@/components/User/BreadCrumb.vue'
 
 const route = useRoute()
 const router = useRouter()
 const loading = ref(true)
 const dish = ref<Dish | null>(null)
+const familyId = ref<number | null>(null)
+
+// Meal plan related variables
+const showMealPlanModal = ref(false)
+const addingToMealPlan = ref(false)
+const newMealPlan = ref({
+  family_id: 0,
+  dish_id: 0,
+  date: '',
+  meal_type: 1, // Default to breakfast
+})
 
 const breadcrumbItems = computed(() => [
   { text: 'Trang chủ', to: '/' },
@@ -136,8 +188,94 @@ const formatQuantity = (quantity: number, unitCode: number) => {
   return `${quantity} ${unitText}`
 }
 
-const addToMealPlan = () => {
-  messageSuccess('Đã thêm món ăn vào danh sách món ăn!')
+// Only allow selecting future dates
+const disabledDate = (date: Date) => {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return date < today
+}
+
+// Show the meal plan modal
+const showAddToMealPlanModal = () => {
+  if (!dish.value) {
+    messageError('Không thể thêm món ăn. Vui lòng tải lại trang.')
+    return
+  }
+
+  // Initialize with dish data
+  newMealPlan.value = {
+    family_id: familyId.value || 0,
+    dish_id: dish.value.id,
+    date: '',
+    meal_type: 1,
+  }
+
+  // Get family ID if not already fetched
+  if (!familyId.value) {
+    fetchFamilyId()
+  }
+
+  showMealPlanModal.value = true
+}
+
+// Fetch family ID from API
+const fetchFamilyId = async () => {
+  try {
+    const response = await getMyFamily()
+    if (response.data) {
+      familyId.value = response.data.id
+      newMealPlan.value.family_id = response.data.id
+    }
+  } catch (error) {
+    console.error('Failed to fetch family data:', error)
+    ElMessage.error('Không thể tải thông tin gia đình. Vui lòng thử lại sau.')
+  }
+}
+
+// Confirm and add to meal plan
+const confirmAddToMealPlan = async () => {
+  // Validation
+  if (!newMealPlan.value.date || !newMealPlan.value.dish_id || !familyId.value) {
+    ElMessage.warning('Vui lòng chọn ngày và bữa ăn.')
+    return
+  }
+
+  addingToMealPlan.value = true
+  try {
+    const response = await addMealPlan({
+      family_id: familyId.value,
+      dish_id: newMealPlan.value.dish_id,
+      date: newMealPlan.value.date,
+      meal_type: newMealPlan.value.meal_type,
+    })
+
+    // Check for successful response
+    if (response && response.id) {
+      messageSuccess('Đã thêm món ăn vào kế hoạch bữa ăn thành công!')
+      showMealPlanModal.value = false
+
+      // Reset form
+      newMealPlan.value = {
+        family_id: familyId.value,
+        dish_id: dish.value?.id || 0,
+        date: '',
+        meal_type: 1,
+      }
+    } else {
+      ElMessage.error('Không thể thêm vào kế hoạch bữa ăn. Vui lòng thử lại.')
+    }
+  } catch (error: any) {
+    console.error('Error adding to meal plan:', error)
+    if (error.response?.status === 401) {
+      ElMessage.error('Vui lòng đăng nhập để thêm vào kế hoạch bữa ăn.')
+    } else {
+      ElMessage.error(
+        error.response?.data?.message || 'Không thể thêm vào kế hoạch bữa ăn. Vui lòng thử lại.',
+      )
+    }
+  } finally {
+    addingToMealPlan.value = false
+  }
 }
 
 const addToShoppingList = () => {
@@ -314,6 +452,21 @@ onMounted(() => {
 
   .el-button {
     width: 100%;
+  }
+}
+
+.add-meal-plan-form {
+  padding: 10px;
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 10px;
+
+  .el-button {
+    width: auto;
   }
 }
 </style>

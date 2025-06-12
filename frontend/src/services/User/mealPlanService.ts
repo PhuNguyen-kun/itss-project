@@ -73,4 +73,13 @@ export const formatMealType = (mealType: number): string => {
   }
 }
 
+/**
+ * Delete a meal plan by ID
+ * @param id - The ID of the meal plan to delete
+ */
+export const deleteMealPlanById = async (id: number) => {
+  const response = await axiosInstance.delete(`/user/meal-plans/${id}`)
+  return response.data
+}
+
 export type { MealPlan, Dish }
