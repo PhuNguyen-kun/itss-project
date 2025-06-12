@@ -6,20 +6,14 @@
       <h2 class="cart-title">Giỏ hàng - Danh sách nguyên liệu cần mua</h2>
     </div>
 
-    <!-- Loading state -->
-    <div v-if="isLoading" class="cart-loading">
-      <div class="spinner"></div>
-      <p>Đang tải danh sách nguyên liệu...</p>
-    </div>
-
     <!-- Error state -->
-    <div v-else-if="error" class="cart-error">
+    <div v-if="error" class="cart-error">
       <el-alert :title="error" type="error" show-icon :closable="false" />
       <button class="user-btn retry-btn" @click="fetchCartItems">Thử lại</button>
     </div>
 
     <!-- Empty state -->
-    <div v-else-if="!hasAssignments" class="cart-empty">
+    <div v-if="!hasAssignments" class="cart-empty">
       <el-empty description="Không có nguyên liệu nào được phân công">
         <router-link to="/meal-plan">
           <button class="user-btn">Xem kế hoạch bữa ăn</button>
