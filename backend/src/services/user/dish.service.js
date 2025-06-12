@@ -1,4 +1,9 @@
-const { Dish, DishIngredient, Ingredient } = require("../../../models");
+const {
+    Dish,
+    DishIngredient,
+    Ingredient,
+    sequelize,
+} = require("../../../models");
 
 /**
  * Get all dishes with optional pagination
@@ -56,7 +61,61 @@ const getDishBySlug = async (slug) => {
     return dish;
 };
 
+/**
+ * Create a new dish with associated ingredients
+ * @param {Object} dishData - Dish data
+ * @param {String} dishData.name - Name of the dish
+ * @param {String} dishData.image_url - Image URL
+ * @param {String} dishData.description - Description
+ * @param {String} dishData.instructions - Instructions
+ * @param {Array} dishData.ingredients - Associated ingredients with quantity, unit and price
+ * @returns {Promise<Object>} - Created dish with its ingredients
+ */
+const createDish = async (dishData) => {
+    const { ingredients, ...dishDetails } = dishData;
+
+    const result = await sequelize.transaction(async (t) => {
+        // Create the dish
+        const dish = await Dish.create(dishDetails, { transaction: t });
+
+        // Create dish-ingredient associations
+        if (ingredients && ingredients.length > 0) {
+            const dishIngredients = ingredients.map((ing) => ({
+                dish_id: dish.id,
+                ingredient_id: ing.id,
+                quantity: ing.quantity,
+                unit: ing.unit,
+                price: ing.price,
+            }));
+
+            await DishIngredient.bulkCreate(dishIngredients, {
+                transaction: t,
+            });
+        }
+
+        // Fetch the created dish with its ingredients
+        return await Dish.findByPk(dish.id, {
+            include: [
+                {
+                    model: DishIngredient,
+                    as: "dish_ingredients",
+                    include: [
+                        {
+                            model: Ingredient,
+                            as: "ingredient",
+                        },
+                    ],
+                },
+            ],
+            transaction: t,
+        });
+    });
+
+    return result;
+};
+
 module.exports = {
     getAllDishes,
     getDishBySlug,
+    createDish,
 };

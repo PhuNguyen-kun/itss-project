@@ -43,4 +43,31 @@ export const getMyFamily = async () => {
   return response.data
 }
 
+/**
+ * Create a new family
+ */
+export const createNewFamily = async (name: string) => {
+  const response = await axiosInstance.post('/user/families', { name })
+  return response.data
+}
+
+/**
+ * Search users by name or email
+ * @param query - Search query
+ */
+export const searchUsersByNameOrEmail = async (query: string) => {
+  const response = await axiosInstance.get(`/user/search?query=${query}`)
+  return response.data
+}
+
+/**
+ * Add members to a family
+ * @param familyId - ID of the family
+ * @param userIds - Array of user IDs to add to the family
+ */
+export const addMembersToFamily = async (familyId: number, userIds: number[]) => {
+  const response = await axiosInstance.post(`/user/families/${familyId}/members`, { userIds })
+  return response.data
+}
+
 export type { Family, FamilyMember }

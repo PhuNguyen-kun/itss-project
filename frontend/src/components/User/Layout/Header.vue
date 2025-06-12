@@ -4,21 +4,21 @@
       <router-link to="/">GroceryMaster</router-link>
     </el-col>
     <el-col :span="12">
-      <el-row :gutter="10">
+      <el-row :gutter="10" class="nav-links">
         <el-col :span="4">
-          <router-link to="/">Trang chủ</router-link>
+          <router-link to="/" exact-active-class="active-link">Trang chủ</router-link>
         </el-col>
         <el-col :span="4">
-          <router-link to="/dishes">Món ăn</router-link>
+          <router-link to="/dishes" active-class="active-link">Món ăn</router-link>
         </el-col>
         <el-col :span="4">
-          <router-link to="/favorites">Yêu thích</router-link>
+          <router-link to="/favorites" active-class="active-link">Yêu thích</router-link>
         </el-col>
         <el-col :span="4">
-          <router-link to="/meal-plan">Kế hoạch</router-link>
+          <router-link to="/meal-plan" active-class="active-link">Kế hoạch</router-link>
         </el-col>
         <el-col :span="4">
-          <router-link to="/cart">Giỏ hàng</router-link>
+          <router-link to="/cart" active-class="active-link">Giỏ hàng</router-link>
         </el-col>
       </el-row>
     </el-col>
@@ -43,16 +43,16 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>
-              <router-link to="/profile">Tài khoản của tôi</router-link>
+              <router-link to="/profile" active-class="active-link">Tài khoản của tôi</router-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <router-link to="/family-manager">Gia đình</router-link>
+              <router-link to="/family-manager" active-class="active-link">Gia đình</router-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <router-link to="/fridge">Tủ lạnh</router-link>
+              <router-link to="/fridge" active-class="active-link">Tủ lạnh</router-link>
             </el-dropdown-item>
             <el-dropdown-item>
-              <router-link to="/favorites">Món ăn yêu thích</router-link>
+              <router-link to="/favorites" active-class="active-link">Món ăn yêu thích</router-link>
             </el-dropdown-item>
             <el-dropdown-item divided @click="handleLogout">
               <span class="logout-item">Đăng xuất</span>
@@ -106,6 +106,37 @@ const handleLogout = () => {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.nav-links {
+  a {
+    color: #666;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--user-theme-color);
+    }
+
+    &.active-link {
+      color: var(--user-theme-color);
+      font-weight: 600;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--user-theme-color);
+      }
+    }
+  }
 }
 
 .header {

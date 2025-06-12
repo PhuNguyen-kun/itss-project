@@ -248,9 +248,8 @@ const toggleFavorite = async () => {
       await removeFromFavorites(props.dish.id)
       isFavorite.value = false
       messageSuccess('Đã xóa khỏi món ăn yêu thích')
-      if (userId.value) {
-        await getFavoritesByUserId(userId.value)
-      }
+      // Emit event to notify parent component
+      emit('favoriteRemoved', props.dish.id)
     } else {
       // Add to favorites
       await addToFavorites(props.dish.id)

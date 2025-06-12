@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const dishController = require("../../controllers/user/dish.controller");
+const { verifyToken } = require("../../middlewares/auth.middleware");
 
 /**
  * @route GET /api/user/dishes
@@ -18,5 +19,11 @@ router.get("/", dishController.getAllDishes);
  */
 router.get("/:slug", dishController.getDishBySlug);
 
+/**
+ * @route POST /api/user/dishes
+ * @desc Create a new dish with ingredients
+ * @access Private
+ */
+router.post("/", verifyToken, dishController.createDish);
 
 module.exports = router;

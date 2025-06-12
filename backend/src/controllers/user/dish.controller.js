@@ -31,3 +31,15 @@ exports.getDishBySlug = asyncHandler(async (req, res) => {
     return responseOk(res, dish, "Dish retrieved successfully");
 });
 
+/**
+ * Create a new dish with ingredients
+ * @route POST /api/user/dishes
+ * @access Private
+ */
+exports.createDish = asyncHandler(async (req, res) => {
+    const dishData = req.body;
+
+    const dish = await dishService.createDish(dishData);
+
+    return responseOk(res, dish, "Dish created successfully", 201);
+});

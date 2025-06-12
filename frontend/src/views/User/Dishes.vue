@@ -2,8 +2,17 @@
   <BreadCrumb :items="breadcrumbItems" />
 
   <div class="dishes-container">
-    <h1 class="dishes__title">Danh sách món ăn</h1>
-
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      "
+    >
+      <h1 class="dishes__title">Danh sách món ăn</h1>
+      <button class="user-btn" @click="showCreateModal = true">Tạo món ăn mới</button>
+    </div>
     <div class="dishes__list">
       <el-row :gutter="20" v-loading="loading">
         <el-col
@@ -20,15 +29,19 @@
       </el-row>
     </div>
   </div>
+
+  <!-- Create Dish Modal -->
+  <CreateDishModal v-model:visible="showCreateModal" @dish-created="handleDishCreated" />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import BreadCrumb from '@/components/User/BreadCrumb.vue'
 import DishCard from '@/components/User/DishCard.vue'
+import CreateDishModal from '@/components/User/CreateDishModal.vue'
 import { getAllDishes } from '@/services/User/dishService'
 import type { Dish } from '@/types/User/dish'
-import { messageError } from '@/composables/notifications'
+import { messageError, messageSuccess } from '@/composables/notifications'
 
 const breadcrumbItems = computed(() => [
   { text: 'Trang chủ', to: '/' },
@@ -37,6 +50,7 @@ const breadcrumbItems = computed(() => [
 
 const dishes = ref<Dish[]>([])
 const loading = ref(false)
+const showCreateModal = ref(false)
 
 const fetchDishes = async () => {
   loading.value = true
@@ -53,6 +67,12 @@ const fetchDishes = async () => {
   }
 }
 
+const handleDishCreated = (newDish: Dish) => {
+  // Add the new dish to the top of the list
+  dishes.value.unshift(newDish)
+  messageSuccess('Món ăn mới đã được thêm thành công!')
+}
+
 onMounted(() => {
   fetchDishes()
 })
@@ -64,7 +84,6 @@ onMounted(() => {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-    text-align: center;
   }
 
   &__list {

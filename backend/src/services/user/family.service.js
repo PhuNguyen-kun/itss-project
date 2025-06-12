@@ -75,32 +75,64 @@ const createFamily = async (familyName) => {
 };
 
 /**
- * Add a user to an existing family
- * @param {string} familyId - ID of the family to join
- * @param {string} userId - ID of the user joining the family
- * @returns {Promise<Object>} - Updated family object
- * @throws {Error} - If family not found or user already a member
+ * Get user by ID
+ * @param {Number} id - User ID
+ * @returns {Promise<Object>} - User object or null if not found
  */
-const joinFamily = async (familyId, userId) => {
+const getUserById = async (id) => {
+    const { User } = require("../../../models");
+    return await User.findByPk(id);
+};
+
+/**
+ * Add members to a family
+ * @param {Number} familyId - ID of the family
+ * @param {Array<Number>} userIds - Array of user IDs to add to the family
+ * @returns {Promise<Object>} - Result object with success and error counts
+ */
+const addMembersToFamily = async (familyId, userIds) => {
+    const { User } = require("../../../models");
+
     // Check if the family exists
-    const family = await Family.findById(familyId);
+    const family = await Family.findByPk(familyId);
 
     if (!family) {
         throw new Error("Family not found");
     }
 
-    // Check if the user is already a member
-    if (family.members && family.members.includes(userId)) {
-        throw new Error("User is already a member of this family");
+    // Keep track of success and errors
+    const result = {
+        success: 0,
+        errors: 0,
+        updatedUsers: [],
+    };
+
+    // Update each user's family_id
+    for (const userId of userIds) {
+        try {
+            const user = await User.findByPk(userId);
+
+            if (user && !user.family_id) {
+                await user.update({
+                    family_id: familyId,
+                    family_role: 1, // Set as family member (not housekeeper)
+                });
+
+                result.success++;
+                result.updatedUsers.push({
+                    id: user.id,
+                    full_name: user.full_name,
+                    email: user.email,
+                });
+            } else {
+                result.errors++;
+            }
+        } catch (error) {
+            result.errors++;
+        }
     }
 
-    // Add the user to the family's members list
-    family.members = family.members ? [...family.members, userId] : [userId];
-
-    // Save the updated family
-    await family.save();
-
-    return family;
+    return result;
 };
 
 module.exports = {
@@ -108,4 +140,6 @@ module.exports = {
     getFamilyById,
     getFamilyByUserId,
     createFamily,
+    getUserById,
+    addMembersToFamily,
 };

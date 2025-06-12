@@ -131,7 +131,7 @@
             <img :src="member.avatar_url || '/default-avatar.png'" :alt="member.full_name" />
           </div>
           <div class="member-info">{{ member.full_name }}</div>
-          <el-checkbox v-model="selectedMemberIds" :label="member.id" />
+          <el-checkbox v-model="selectedMemberIds" :label="member.id" class="no-label" />
         </div>
       </div>
       <div class="dialog-footer">
@@ -950,5 +950,9 @@ onMounted(() => {
   flex: 1;
   font-weight: 500;
   color: #333;
+}
+
+.no-label :deep(.el-checkbox__label) {
+  display: none;
 }
 </style>

@@ -35,4 +35,13 @@ router.get("/:id", familyController.getFamilyById);
  */
 router.post("/", verifyToken, familyController.createFamily);
 
+/**
+ * @route POST /api/user/families/:id/members
+ * @desc Add members to a family
+ * @param {Number} id - Family ID
+ * @body {Array} userIds - Array of user IDs to add to the family
+ * @access Private (only housekeepers can add members)
+ */
+router.post("/:id/members", verifyToken, familyController.addMembers);
+
 module.exports = router;

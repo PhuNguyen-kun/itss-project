@@ -51,6 +51,11 @@ const userRoutes: RouteRecordRaw[] = [
         name: 'favorites',
         component: () => import('@/views/User/Favorites.vue'),
       },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/views/User/Profile.vue'),
+      },
     ],
   },
   {
