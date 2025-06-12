@@ -23,7 +23,7 @@ module.exports = {
                     name: "Bún chả",
                     slug: generateSlugFromName("Bún chả"),
                     image_url:
-                        "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2023/05/29/1660a843b56d4a6f88b326001461a685_Vietnam_101_How_To_Eat_Vietnamese_Food_Like_A_Local_%286%29.jpg",
+                        "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/02/25/0/FNK_Bun-Cha_H1_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1614271647270.webp",
                     description: "Món Bún chả thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Bún chả từng bước một.",
                     createdAt: new Date(),
@@ -34,7 +34,7 @@ module.exports = {
                     name: "Canh chua cá",
                     slug: generateSlugFromName("Canh chua cá"),
                     image_url:
-                        "https://media.cnn.com/api/v1/images/stellar/prod/160524092144-vietnam-street-food-bot-chien.jpg?q=w_2000,h_1333,x_0,y_0,c_fill",
+                        "https://tse1.mm.bing.net/th?id=OIP.yULyHJBaMKJWrNlahtxNDAHaFN&pid=Api&P=0&h=220",
                     description: "Món Canh chua cá thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Canh chua cá từng bước một.",
@@ -46,7 +46,7 @@ module.exports = {
                     name: "Trứng chiên",
                     slug: generateSlugFromName("Trứng chiên"),
                     image_url:
-                        "https://www.easyridersvietnam.com/wp-content/uploads/2023/03/must-try-dishes-in-vietnam-pho1.jpg",
+                        "https://cdn.tgdd.vn/2020/07/CookRecipe/Avatar/trung-chien-nuoc-mam-thumbnail.jpg",
                     description: "Món Trứng chiên thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Trứng chiên từng bước một.",
@@ -58,7 +58,7 @@ module.exports = {
                     name: "Cơm rang trứng",
                     slug: generateSlugFromName("Cơm rang trứng"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/01/VietnamFood3.png",
+                        "https://image-us.eva.vn/upload/3-2022/images/2022-07-28/image25-1659002279-758-width785height437.png",
                     description: "Món Cơm rang trứng thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Cơm rang trứng từng bước một.",
@@ -70,7 +70,7 @@ module.exports = {
                     name: "Gỏi cuốn",
                     slug: generateSlugFromName("Gỏi cuốn"),
                     image_url:
-                        "https://www.matchingfoodandwine.com/files/blogattachments/top/vietnamese-summer-rolls-(1)@2x.jpg",
+                        "https://sepabayo.com/wp-content/uploads/2021/08/1_XLDN.jpg",
                     description: "Món Gỏi cuốn thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Gỏi cuốn từng bước một.",
                     createdAt: new Date(),
@@ -81,7 +81,7 @@ module.exports = {
                     name: "Mì xào bò",
                     slug: generateSlugFromName("Mì xào bò"),
                     image_url:
-                        "https://www.phobynight.com/wp-content/uploads/2023/08/Vegetarian-Pad-Thai-e1691782053841.jpg",
+                        "https://i.ytimg.com/vi/jZ8OFZt3OzM/maxresdefault.jpg",
                     description: "Món Mì xào bò thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Mì xào bò từng bước một.",
                     createdAt: new Date(),
@@ -92,7 +92,7 @@ module.exports = {
                     name: "Salad dầu giấm",
                     slug: generateSlugFromName("Salad dầu giấm"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/02/vietnam-pho.png",
+                        "https://cdn.tgdd.vn/Files/2021/08/06/1373466/huong-dan-lam-mon-salad-dau-giam-thom-ngon-bo-duong-de-lam-tai-nha-202201081510043817.jpeg",
                     description: "Món Salad dầu giấm thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Salad dầu giấm từng bước một.",
@@ -104,7 +104,7 @@ module.exports = {
                     name: "Cháo gà",
                     slug: generateSlugFromName("Cháo gà"),
                     image_url:
-                        "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2023/05/29/1660a843b56d4a6f88b326001461a685_Vietnam_101_How_To_Eat_Vietnamese_Food_Like_A_Local_%286%29.jpg",
+                        "https://tse2.mm.bing.net/th?id=OIP.iAz0BZOwbOXW3f5_orHrnQHaHa&pid=Api&P=0&h=220",
                     description: "Món Cháo gà thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Cháo gà từng bước một.",
                     createdAt: new Date(),
@@ -115,7 +115,7 @@ module.exports = {
                     name: "Cá kho",
                     slug: generateSlugFromName("Cá kho"),
                     image_url:
-                        "https://media.cnn.com/api/v1/images/stellar/prod/160524092144-vietnam-street-food-bot-chien.jpg?q=w_2000,h_1333,x_0,y_0,c_fill",
+                        "https://cdn.shortpixel.ai/spai2/w_600+q_glossy+ret_img+to_auto/hungryhuy.com/wp-content/uploads/ca-kho-vietnamese-caramelized-fish-1.jpg",
                     description: "Món Cá kho thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Cá kho từng bước một.",
                     createdAt: new Date(),
@@ -126,7 +126,7 @@ module.exports = {
                     name: "Canh bí đỏ",
                     slug: generateSlugFromName("Canh bí đỏ"),
                     image_url:
-                        "https://www.easyridersvietnam.com/wp-content/uploads/2023/03/must-try-dishes-in-vietnam-pho1.jpg",
+                        "https://yummyday.vn/uploads/images/canh-bi-do-chay-3.jpg",
                     description: "Món Canh bí đỏ thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Canh bí đỏ từng bước một.",
                     createdAt: new Date(),
@@ -137,7 +137,7 @@ module.exports = {
                     name: "Bánh mì trứng",
                     slug: generateSlugFromName("Bánh mì trứng"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/01/VietnamFood3.png",
+                        "https://tse1.mm.bing.net/th?id=OIP.VPyf2R3CgZFmzIeR_susTgHaE8&pid=Api&P=0&h=220",
                     description: "Món Bánh mì trứng thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Bánh mì trứng từng bước một.",
@@ -149,7 +149,7 @@ module.exports = {
                     name: "Bún bò Huế",
                     slug: generateSlugFromName("Bún bò Huế"),
                     image_url:
-                        "https://www.matchingfoodandwine.com/files/blogattachments/top/vietnamese-summer-rolls-(1)@2x.jpg",
+                        "https://i.ytimg.com/vi/A_o2qfaTgKs/maxresdefault.jpg",
                     description: "Món Bún bò Huế thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Bún bò Huế từng bước một.",
                     createdAt: new Date(),
@@ -160,7 +160,7 @@ module.exports = {
                     name: "Súp cua",
                     slug: generateSlugFromName("Súp cua"),
                     image_url:
-                        "https://www.phobynight.com/wp-content/uploads/2023/08/Vegetarian-Pad-Thai-e1691782053841.jpg",
+                        "https://toplist.vn/images/800px/sup-cua-539467.jpg",
                     description: "Món Súp cua thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Súp cua từng bước một.",
                     createdAt: new Date(),
@@ -171,7 +171,7 @@ module.exports = {
                     name: "Cơm gà xối mỡ",
                     slug: generateSlugFromName("Cơm gà xối mỡ"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/02/vietnam-pho.png",
+                        "https://tse2.mm.bing.net/th?id=OIP.wkskN_E36oJzgEEW_2IliAHaIc&pid=Api&P=0&h=220",
                     description: "Món Cơm gà xối mỡ thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Cơm gà xối mỡ từng bước một.",
@@ -183,7 +183,7 @@ module.exports = {
                     name: "Mì Ý sốt cà chua",
                     slug: generateSlugFromName("Mì Ý sốt cà chua"),
                     image_url:
-                        "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2023/05/29/1660a843b56d4a6f88b326001461a685_Vietnam_101_How_To_Eat_Vietnamese_Food_Like_A_Local_%286%29.jpg",
+                        "https://gofood.vn/uploads/tong-hop-tin-tuc/huong-dan-mon-ngon/mi-y-sot-ca-chua-bo-bam.jpg",
                     description: "Món Mì Ý sốt cà chua thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Mì Ý sốt cà chua từng bước một.",
@@ -195,7 +195,7 @@ module.exports = {
                     name: "Canh rau ngót",
                     slug: generateSlugFromName("Canh rau ngót"),
                     image_url:
-                        "https://media.cnn.com/api/v1/images/stellar/prod/160524092144-vietnam-street-food-bot-chien.jpg?q=w_2000,h_1333,x_0,y_0,c_fill",
+                        "https://cdn2.fptshop.com.vn/unsafe/Uploads/images/tin-tuc/163065/Originals/cach-nau-canh-rau-ngot-4.jpg",
                     description: "Món Canh rau ngót thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Canh rau ngót từng bước một.",
@@ -207,7 +207,7 @@ module.exports = {
                     name: "Cá chiên giòn",
                     slug: generateSlugFromName("Cá chiên giòn"),
                     image_url:
-                        "https://www.easyridersvietnam.com/wp-content/uploads/2023/03/must-try-dishes-in-vietnam-pho1.jpg",
+                        "https://tse1.mm.bing.net/th?id=OIP.W5gqQwcH8Nbd8BsxO94jyQHaEL&pid=Api&P=0&h=220",
                     description: "Món Cá chiên giòn thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Cá chiên giòn từng bước một.",
@@ -219,7 +219,7 @@ module.exports = {
                     name: "Trứng luộc",
                     slug: generateSlugFromName("Trứng luộc"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/01/VietnamFood3.png",
+                        "https://cdn-www.vinid.net/2020/04/6372975d-tr%E1%BB%A9ng-g%C3%A0-ta-lu%E1%BB%99c.jpg",
                     description: "Món Trứng luộc thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Trứng luộc từng bước một.",
                     createdAt: new Date(),
@@ -230,7 +230,7 @@ module.exports = {
                     name: "Bánh xèo",
                     slug: generateSlugFromName("Bánh xèo"),
                     image_url:
-                        "https://www.matchingfoodandwine.com/files/blogattachments/top/vietnamese-summer-rolls-(1)@2x.jpg",
+                        "https://thekitchencommunity.org/wp-content/uploads/2022/12/image-14.jpeg",
                     description: "Món Bánh xèo thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Bánh xèo từng bước một.",
                     createdAt: new Date(),
@@ -241,7 +241,7 @@ module.exports = {
                     name: "Nem rán",
                     slug: generateSlugFromName("Nem rán"),
                     image_url:
-                        "https://www.phobynight.com/wp-content/uploads/2023/08/Vegetarian-Pad-Thai-e1691782053841.jpg",
+                        "https://cookbeo.com/media/2021/01/nem-ran/thumbnails/mon-nem-ran-6-1200.jpg",
                     description: "Món Nem rán thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Nem rán từng bước một.",
                     createdAt: new Date(),
@@ -252,7 +252,7 @@ module.exports = {
                     name: "Canh cải ngọt",
                     slug: generateSlugFromName("Canh cải ngọt"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/02/vietnam-pho.png",
+                        "https://cdn.tgdd.vn/2021/04/CookRecipe/Avatar/canh-cai-ngot-thit-bam-thumbnail-4.jpg",
                     description: "Món Canh cải ngọt thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Canh cải ngọt từng bước một.",
@@ -264,7 +264,7 @@ module.exports = {
                     name: "Cơm tấm",
                     slug: generateSlugFromName("Cơm tấm"),
                     image_url:
-                        "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2023/05/29/1660a843b56d4a6f88b326001461a685_Vietnam_101_How_To_Eat_Vietnamese_Food_Like_A_Local_%286%29.jpg",
+                        "https://cafebiz.cafebizcdn.vn/162123310254002176/2022/12/7/com-tam-suon-bi-cha-trung-anh-hoa-quynh-nguyen-1670317945936565526419-1670385940206-16703859407121546487016-1670395722685-16703957227611562343004.jpg",
                     description: "Món Cơm tấm thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Cơm tấm từng bước một.",
                     createdAt: new Date(),
@@ -275,7 +275,7 @@ module.exports = {
                     name: "Gà kho gừng",
                     slug: generateSlugFromName("Gà kho gừng"),
                     image_url:
-                        "https://media.cnn.com/api/v1/images/stellar/prod/160524092144-vietnam-street-food-bot-chien.jpg?q=w_2000,h_1333,x_0,y_0,c_fill",
+                        "https://www.cet.edu.vn/wp-content/uploads/2018/04/lam-ga-kho-gung.jpg",
                     description: "Món Gà kho gừng thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Gà kho gừng từng bước một.",
@@ -287,7 +287,7 @@ module.exports = {
                     name: "Miến gà",
                     slug: generateSlugFromName("Miến gà"),
                     image_url:
-                        "https://www.easyridersvietnam.com/wp-content/uploads/2023/03/must-try-dishes-in-vietnam-pho1.jpg",
+                        "https://sieungon.com/wp-content/uploads/2019/12/cong-thuc-nau-mien-ga.jpg",
                     description: "Món Miến gà thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Miến gà từng bước một.",
                     createdAt: new Date(),
@@ -298,7 +298,7 @@ module.exports = {
                     name: "Xôi đậu xanh",
                     slug: generateSlugFromName("Xôi đậu xanh"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/01/VietnamFood3.png",
+                        "https://tse3.mm.bing.net/th?id=OIP.mzgPpP8Aj8hq5GFtjTO8gwHaHZ&pid=Api&P=0&h=220",
                     description: "Món Xôi đậu xanh thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Xôi đậu xanh từng bước một.",
@@ -310,7 +310,7 @@ module.exports = {
                     name: "Cháo trắng",
                     slug: generateSlugFromName("Cháo trắng"),
                     image_url:
-                        "https://www.matchingfoodandwine.com/files/blogattachments/top/vietnamese-summer-rolls-(1)@2x.jpg",
+                        "https://cdn.tgdd.vn/Files/2019/05/27/1169311/2-cach-nau-chao-trang-ngon-mieng-cung-cac-mon-an-kem-202102261525069386.jpg",
                     description: "Món Cháo trắng thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Cháo trắng từng bước một.",
                     createdAt: new Date(),
@@ -321,7 +321,7 @@ module.exports = {
                     name: "Salad trái cây",
                     slug: generateSlugFromName("Salad trái cây"),
                     image_url:
-                        "https://www.phobynight.com/wp-content/uploads/2023/08/Vegetarian-Pad-Thai-e1691782053841.jpg",
+                        "https://quangon.vn/resources/2020/05/19/salad-trai-cay-sot-mayonnaise-13.jpg",
                     description: "Món Salad trái cây thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Salad trái cây từng bước một.",
@@ -333,7 +333,7 @@ module.exports = {
                     name: "Súp bí đỏ",
                     slug: generateSlugFromName("Súp bí đỏ"),
                     image_url:
-                        "https://www.experiencetravelgroup.com/blog/wp-content/uploads/2023/02/vietnam-pho.png",
+                        "https://tse1.mm.bing.net/th?id=OIP.Ey9fnXWVTi8MpmQSNU7QTwHaEK&pid=Api",
                     description: "Món Súp bí đỏ thơm ngon hấp dẫn.",
                     instructions: "Hướng dẫn nấu món Súp bí đỏ từng bước một.",
                     createdAt: new Date(),
@@ -344,7 +344,7 @@ module.exports = {
                     name: "Canh mồng tơi",
                     slug: generateSlugFromName("Canh mồng tơi"),
                     image_url:
-                        "https://d3h1lg3ksw6i6b.cloudfront.net/media/image/2023/05/29/1660a843b56d4a6f88b326001461a685_Vietnam_101_How_To_Eat_Vietnamese_Food_Like_A_Local_%286%29.jpg",
+                        "https://cdn.tgdd.vn/2021/01/CookProduct/Untitled-1-1200x676-1.jpg",
                     description: "Món Canh mồng tơi thơm ngon hấp dẫn.",
                     instructions:
                         "Hướng dẫn nấu món Canh mồng tơi từng bước một.",
