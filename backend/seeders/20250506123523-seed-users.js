@@ -7,7 +7,7 @@ module.exports = {
         users.push({
             full_name: "Admin",
             email: "admin@gmail.com",
-            password: "12345678",
+            password: "$2y$12$a1jZ.GtIsbJYKhdpgpyU7eiVwYZwsByvj0BPR9ZdGso22qlMNx9iu",
             phone_number: "0999999999",
             gender: 1,
             birth_date: new Date(1990, 0, 1),
