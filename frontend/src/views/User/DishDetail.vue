@@ -118,7 +118,6 @@ const loading = ref(true)
 const dish = ref<Dish | null>(null)
 const familyId = ref<number | null>(null)
 
-// Meal plan related variables
 const showMealPlanModal = ref(false)
 const addingToMealPlan = ref(false)
 const newMealPlan = ref({
@@ -188,21 +187,18 @@ const formatQuantity = (quantity: number, unitCode: number) => {
   return `${quantity} ${unitText}`
 }
 
-// Only allow selecting future dates
 const disabledDate = (date: Date) => {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   return date < today
 }
 
-// Show the meal plan modal
 const showAddToMealPlanModal = () => {
   if (!dish.value) {
     messageError('Không thể thêm món ăn. Vui lòng tải lại trang.')
     return
   }
 
-  // Initialize with dish data
   newMealPlan.value = {
     family_id: familyId.value || 0,
     dish_id: dish.value.id,
@@ -210,7 +206,6 @@ const showAddToMealPlanModal = () => {
     meal_type: 1,
   }
 
-  // Get family ID if not already fetched
   if (!familyId.value) {
     fetchFamilyId()
   }
@@ -218,7 +213,6 @@ const showAddToMealPlanModal = () => {
   showMealPlanModal.value = true
 }
 
-// Fetch family ID from API
 const fetchFamilyId = async () => {
   try {
     const response = await getMyFamily()
@@ -232,9 +226,7 @@ const fetchFamilyId = async () => {
   }
 }
 
-// Confirm and add to meal plan
 const confirmAddToMealPlan = async () => {
-  // Validation
   if (!newMealPlan.value.date || !newMealPlan.value.dish_id || !familyId.value) {
     ElMessage.warning('Vui lòng chọn ngày và bữa ăn.')
     return
@@ -249,12 +241,10 @@ const confirmAddToMealPlan = async () => {
       meal_type: newMealPlan.value.meal_type,
     })
 
-    // Check for successful response
     if (response && response.id) {
       messageSuccess('Đã thêm món ăn vào kế hoạch bữa ăn thành công!')
       showMealPlanModal.value = false
 
-      // Reset form
       newMealPlan.value = {
         family_id: familyId.value,
         dish_id: dish.value?.id || 0,

@@ -92,9 +92,7 @@ const familyName = ref('')
 const fridgeItems = ref<FridgeItem[]>([])
 const recentlyAddedItems = ref<number[]>([])
 
-// Check if items were recently added (from cart)
 onMounted(() => {
-  // Check if there are newly added items from the URL query params
   const addedItems = route.query.added
   if (addedItems) {
     try {
@@ -103,10 +101,9 @@ onMounted(() => {
       if (Array.isArray(itemIds)) {
         recentlyAddedItems.value = itemIds
 
-        // Highlight the newly added items
         setTimeout(() => {
           recentlyAddedItems.value = []
-        }, 5000) // Clear the highlighting after 5 seconds
+        }, 5000)
       }
     } catch (err) {
       console.error('Error parsing recently added items:', err)
@@ -116,7 +113,6 @@ onMounted(() => {
   fetchFamilyData()
 })
 
-// Fetch family data
 const fetchFamilyData = async () => {
   try {
     isLoading.value = true
@@ -142,7 +138,6 @@ const fetchFamilyData = async () => {
   }
 }
 
-// Fetch fridge items
 const fetchFridgeItems = async () => {
   if (!familyId.value) return
 
@@ -164,7 +159,6 @@ const fetchFridgeItems = async () => {
   }
 }
 
-// Utility functions
 const isRecentlyAdded = (id: number): boolean => {
   return recentlyAddedItems.value.includes(id)
 }
@@ -174,7 +168,6 @@ const formatDate = (dateString: string): string => {
   return date.toLocaleDateString('vi-VN')
 }
 
-// Delete functionality
 const confirmDelete = (item: FridgeItem) => {
   ElMessageBox.confirm(
     `Bạn có chắc chắn muốn xóa ${item.ingredient.name} khỏi tủ lạnh không?`,
@@ -197,7 +190,6 @@ const confirmDelete = (item: FridgeItem) => {
 
         ElMessage.success(`Đã xóa ${item.ingredient.name} khỏi tủ lạnh`)
 
-        // Refresh the fridge items list
         await fetchFridgeItems()
       } catch (err: any) {
         console.error('Failed to delete ingredient:', err)

@@ -128,13 +128,10 @@ const breadcrumbItems = computed(() => [
   { text: 'Giỏ hàng', to: '/cart' },
 ])
 
-// Function to navigate to fridge view with newly added items
 const viewInFridge = () => {
   if (addedToFridgeItems.value.length > 0) {
-    // Extract the IDs of added items to pass as query params
     const addedItemIds = addedToFridgeItems.value.map((item) => item.id)
 
-    // Navigate to fridge view with added items info
     router.push({
       path: '/fridge',
       query: {
@@ -144,7 +141,6 @@ const viewInFridge = () => {
   }
 }
 
-// State management
 const isLoading = ref(true)
 const error = ref('')
 const familyId = ref<number | null>(null)
@@ -154,10 +150,8 @@ const cartData = ref<CartResponse>({
   members: [],
 })
 
-// Add a ref for tracking which items are being updated
 const updatingItems = ref<Record<number, boolean>>({})
 
-// Tracking purchased items for fridge view
 interface PurchasedItem {
   id: number
   ingredientName: string
@@ -165,19 +159,16 @@ interface PurchasedItem {
 const addedToFridgeItems = ref<PurchasedItem[]>([])
 const showViewFridgeButton = ref(false)
 
-// Helper to check if a specific item is being updated
 const isUpdating = (itemId: number): boolean => {
   return !!updatingItems.value[itemId]
 }
 
-// Computed for checking if there are assignments
 const hasAssignments = computed(() => {
   if (!cartData.value || !cartData.value.members) return false
 
   return cartData.value.members.some((member) => member.cart_items && member.cart_items.length > 0)
 })
 
-// Format family role
 const formatRole = (role: number): string => {
   switch (role) {
     case 0:
@@ -189,11 +180,9 @@ const formatRole = (role: number): string => {
   }
 }
 
-// Update item status
 const updateItemStatus = async (item: any) => {
   if (!familyId.value) return
 
-  // Mark the item as being updated
   updatingItems.value[item.id] = true
 
   try {
@@ -203,33 +192,27 @@ const updateItemStatus = async (item: any) => {
     if (response.success) {
       ElMessage.success(`Cập nhật trạng thái thành công: ${item.status ? 'Đã mua' : 'Chưa mua'}`)
 
-      // If the item was marked as purchased, inform the user it was added to the fridge
       if (item.status) {
         ElMessage.info(`Nguyên liệu ${item.ingredient.name} đã được thêm vào tủ lạnh`)
 
-        // Add the item ID to our tracking array for purchased items
         addedToFridgeItems.value.push({
           id: response.data.id,
           ingredientName: item.ingredient.name,
         })
 
-        // If we have at least one item, show the "View in Fridge" button
         showViewFridgeButton.value = true
       }
     } else {
-      // If there was an error, revert the checkbox status
       item.status = !item.status
       throw new Error(response.message || 'Failed to update item status')
     }
   } catch (err: any) {
     console.error('Failed to update cart item status:', err)
-    // Revert the checkbox status on error
     item.status = !item.status
     ElMessage.error(
       err.response?.data?.message || 'Không thể cập nhật trạng thái. Vui lòng thử lại.',
     )
   } finally {
-    // Mark the item as no longer being updated
     updatingItems.value[item.id] = false
   }
 }

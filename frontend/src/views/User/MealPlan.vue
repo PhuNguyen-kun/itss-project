@@ -288,22 +288,18 @@ const groupedMealPlans = computed(() => {
   return result
 })
 
-// Get meals by type from a list of meals - returns array of meals for the specified meal type
 const getMealsByType = (meals: MealPlan[], mealType: number): MealPlan[] => {
   return meals.filter((meal) => meal.meal_type === mealType)
 }
 
-// For backward compatibility - returns the first meal of the specified type (or undefined if none)
 const getMealByType = (meals: MealPlan[], mealType: number): MealPlan | undefined => {
   return meals.find((meal) => meal.meal_type === mealType)
 }
 
-// Function to handle disabled dates (disallow past dates)
 const disabledDate = (date: Date) => {
   return date < new Date(new Date().setHours(0, 0, 0, 0))
 }
 
-// Handle date range change
 const handleDateChange = (val: string[]) => {
   if (val) {
     startDate.value = val[0]
@@ -316,17 +312,14 @@ const handleDateChange = (val: string[]) => {
   }
 }
 
-// Function to search for dishes
 const searchDishes = async (query: string) => {
   if (query.length < 1) return
 
   searchLoading.value = true
   try {
     const response = await getAllDishes({
-      // Using query parameter if your API supports it
     })
     if (response.success && response.data) {
-      // Filter dishes based on the query
       dishOptions.value = response.data.filter((dish) =>
         dish.name.toLowerCase().includes(query.toLowerCase()),
       )
@@ -339,7 +332,6 @@ const searchDishes = async (query: string) => {
   }
 }
 
-// Open add meal plan modal with pre-filled values
 const showAddMealPlanModal = (date: string, mealType: number) => {
   newMealPlan.value = {
     family_id: familyId.value || 0,
@@ -350,9 +342,7 @@ const showAddMealPlanModal = (date: string, mealType: number) => {
   showAddMealPlan.value = true
 }
 
-// Add a new meal plan
 const addMealPlan = async () => {
-  // Validation
   if (!newMealPlan.value.date || !newMealPlan.value.dish_id || !newMealPlan.value.meal_type) {
     ElMessage.warning('Vui lòng điền đầy đủ thông tin.')
     return
@@ -367,7 +357,6 @@ const addMealPlan = async () => {
       meal_type: newMealPlan.value.meal_type,
     })
 
-    // The response is the created meal plan object if successful
     if (response && response.id) {
       ElMessage.success('Thêm kế hoạch bữa ăn thành công!')
       showAddMealPlan.value = false
@@ -393,7 +382,6 @@ const addMealPlan = async () => {
   }
 }
 
-// Delete meal plan
 const deleteMealPlan = async (id: number) => {
   ElMessageBox.confirm(
     'Bạn có chắc chắn muốn xóa món ăn này khỏi kế hoạch bữa ăn không?',
@@ -482,12 +470,10 @@ const fetchMealPlans = async () => {
   }
 }
 
-// Get meal plans by date - returns all meal plans for a specific date
 const getMealPlansByDate = (date: string): MealPlan[] => {
   return mealPlans.value.filter((plan) => plan.date.split('T')[0] === date)
 }
 
-// Format simple date for display in the modal
 const formatSimpleDate = (dateStr: string) => {
   try {
     const date = new Date(dateStr)
@@ -501,7 +487,6 @@ const formatSimpleDate = (dateStr: string) => {
   }
 }
 
-// Show the family member assignment modal
 const showAssignModal = async (datesMealPlans: MealPlan[]) => {
   if (!datesMealPlans.length) {
     ElMessage.error('Không có kế hoạch bữa ăn nào để phân công.')
@@ -514,13 +499,11 @@ const showAssignModal = async (datesMealPlans: MealPlan[]) => {
     if (!familyId.value) {
       ElMessage.error('Vui lòng đăng nhập để thực hiện chức năng này.')
       return
-    } // Fetch family data if we don't have it yet
+    } 
     const response = await getMyFamily()
     if (response.data && response.data.users) {
       familyMembers.value = response.data.users
-      // Reset selected members
       selectedMemberIds.value = []
-      // Open the modal
       showFamilyMemberModal.value = true
     } else {
       ElMessage.error('Không thể tải thông tin gia đình. Vui lòng thử lại sau.')
@@ -531,7 +514,6 @@ const showAssignModal = async (datesMealPlans: MealPlan[]) => {
   }
 }
 
-// Confirm family member assignment
 const confirmAssignment = async () => {
   if (selectedMemberIds.value.length === 0 || !familyId.value) {
     ElMessage.warning('Vui lòng chọn ít nhất một thành viên gia đình.')
@@ -552,7 +534,6 @@ const confirmAssignment = async () => {
       ElMessage.success('Phân công thành công! Bạn có thể xem chi tiết trong giỏ hàng.')
       showFamilyMemberModal.value = false
 
-      // Option: Navigate to cart page to see the assignments
       router.push('/cart')
     } else {
       throw new Error('Assignment failed')

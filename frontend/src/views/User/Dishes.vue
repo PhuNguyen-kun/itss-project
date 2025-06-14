@@ -68,7 +68,6 @@ const fetchDishes = async () => {
 }
 
 const handleDishCreated = (newDish: Dish) => {
-  // Add the new dish to the top of the list
   dishes.value.unshift(newDish)
   messageSuccess('Món ăn mới đã được thêm thành công!')
 }

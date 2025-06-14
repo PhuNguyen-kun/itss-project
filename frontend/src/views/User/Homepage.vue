@@ -18,7 +18,6 @@
       <div class="homepage__section">
         <div class="homepage__section--header">
           <h2 class="homepage__section--title">Top món ăn được yêu thích nhất</h2>
-          <!-- <router-link to="/dishes"><button class="user-btn">Xem tất cả</button></router-link> -->
         </div class="homepage__section--header">
         <el-row :gutter="20" v-loading="loading">
           <el-col

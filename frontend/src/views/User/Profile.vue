@@ -469,7 +469,6 @@ const resetPasswordForm = () => {
 
 const openAvatarUpload = () => {
   activeTab.value = 'profile'
-  // Focus on the avatar upload field - timeout allows the tab to render first
   setTimeout(() => {
     const uploadElement = document.querySelector('.avatar-uploader .el-upload')
     if (uploadElement) {
@@ -484,24 +483,19 @@ const handleAvatarUpload = async (options: any) => {
     const file = options.file
     isUpdating.value = true
 
-    // Preview the image locally first
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = (e) => {
-      // This is just for preview, not for storage
       avatarUrl.value = e.target?.result as string
-    } // Upload the file to the server
-    const uploadResponse = await uploadAvatar(file) // Update the avatar URL with the one returned from the server
-    // Use fullAvatarUrl if available, otherwise use avatarUrl
+    } 
+    const uploadResponse = await uploadAvatar(file) 
     const fullUrl = uploadResponse.data.fullAvatarUrl || uploadResponse.data.avatarUrl
     avatarUrl.value = fullUrl
 
-    // Update user's avatar in auth store with the full URL
     if (authStore.userInfo) {
       authStore.userInfo.avatar_url = fullUrl
     }
 
-    // notifySuccess('Ảnh đại diện đã được cập nhật')
     options.onSuccess()
   } catch (error) {
     console.error('Error uploading avatar:', error)
@@ -515,7 +509,7 @@ const handleAvatarUpload = async (options: any) => {
 const beforeAvatarUpload = (file: File) => {
   const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
   const isValidType = validTypes.includes(file.type)
-  const isLt5M = file.size / 1024 / 1024 < 5 // Increased to 5MB
+  const isLt5M = file.size / 1024 / 1024 < 5
 
   if (!isValidType) {
     ElMessage.error('Ảnh đại diện phải là định dạng JPG, PNG, GIF hoặc WEBP!')

@@ -203,17 +203,14 @@ const formatRole = (family_role?: number) => {
   }
 }
 
-// Modal visibility state
 const showAddMemberModal = ref(false)
 const showCreateFamilyModal = ref(false)
 
-// Search state for add member modal
 const searchQuery = ref('')
 const searchResults = ref<any[]>([])
 const isSearching = ref(false)
 const selectedUsers = ref<any[]>([])
 
-// Create family form
 const familyForm = reactive({
   name: '',
 })
@@ -227,7 +224,6 @@ const familyFormRules = {
 
 const createFamilyFormRef = ref()
 
-// Modal control functions
 const openAddMemberModal = () => {
   if (!isHousekeeper.value) {
     notifyError('Chỉ người quản lý gia đình mới có thể thêm thành viên')
@@ -256,7 +252,6 @@ const openCreateFamilyModal = () => {
   showCreateFamilyModal.value = true
 }
 
-// User search and selection functions
 const searchUsers = async () => {
   try {
     isSearching.value = true
@@ -277,7 +272,6 @@ const searchUsers = async () => {
 }
 
 const selectUser = (user: any) => {
-  // Check if user is already selected
   const index = selectedUsers.value.findIndex((u) => u.id === user.id)
   if (index === -1) {
     selectedUsers.value.push(user)
@@ -290,7 +284,6 @@ const isUserSelected = (user: any) => {
   return selectedUsers.value.some((u) => u.id === user.id)
 }
 
-// Add members function
 const addMembers = async () => {
   if (selectedUsers.value.length === 0) {
     notifyError('Vui lòng chọn ít nhất một thành viên')
@@ -351,7 +344,6 @@ const fetchFamilyData = async () => {
     error.value =
       err.response?.data?.message || 'Không thể tải thông tin gia đình. Vui lòng thử lại sau.'
 
-    // If unauthorized, redirect to login
     if (err.response?.status === 401) {
       notifyError('Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại')
       router.push('/login')

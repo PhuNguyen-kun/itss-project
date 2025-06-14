@@ -50,13 +50,11 @@ const breadcrumbItems = computed(() => [
   { text: 'Món ăn yêu thích', to: '/favorites' },
 ])
 
-// State
 const isLoading = ref(true)
 const error = ref('')
 const favorites = ref<FavoriteResponse[]>([])
 const authStore = useAuthStore()
 
-// Fetch favorites on component mount
 onMounted(() => {
   fetchFavoritesByUserId()
 })
@@ -66,7 +64,6 @@ const fetchFavoritesByUserId = async () => {
     isLoading.value = true
     error.value = ''
 
-    // Get the current user ID from auth store
     const userId = authStore.userInfo.id
     if (!userId) {
       throw new Error('User not logged in')
