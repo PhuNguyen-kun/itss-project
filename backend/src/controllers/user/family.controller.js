@@ -92,6 +92,43 @@ exports.createFamily = async (req, res) => {
 };
 
 /**
+ * Update a family
+ * @route PUT /api/user/families/:id
+ */
+exports.updateFamily = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    if (!name) {
+        throw new ApiError(400, "Family name is required");
+    }
+
+    const updatedFamily = await familyService.updateFamily(id, { name });
+
+    if (!updatedFamily) {
+        throw new ApiError(404, "Family not found or update failed");
+    }
+
+    return responseOk(res, updatedFamily, "Family updated successfully");
+});
+
+/**
+ * Delete a family
+ * @route DELETE /api/user/families/:id
+ */
+exports.deleteFamily = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const deleted = await familyService.deleteFamily(id);
+
+    if (!deleted) {
+        throw new ApiError(404, "Family not found or delete failed");
+    }
+
+    return responseOk(res, { id }, "Family deleted successfully");
+});
+
+/**
  * Add members to a family
  * @route POST /api/user/families/:id/members
  */

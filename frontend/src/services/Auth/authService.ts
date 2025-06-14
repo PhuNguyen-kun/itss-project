@@ -19,6 +19,15 @@ export const register = async (payload: SignupPayload): Promise<any> => {
   }
 }
 
+export const profile = async (): Promise<any> => {
+  try {
+    const response = await axiosInstance.get('/auth/profile')
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const loginGoogle = (token: string) => {
   return axiosInstance.post('/auth/google', { token })
 }

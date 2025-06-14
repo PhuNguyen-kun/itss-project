@@ -43,3 +43,20 @@ exports.createDish = asyncHandler(async (req, res) => {
 
     return responseOk(res, dish, "Dish created successfully", 201);
 });
+
+/**
+ * Delete a dish by ID
+ * @route DELETE /api/user/dishes/:id
+ * @access Private
+ */
+exports.deleteDish = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const success = await dishService.deleteDish(id);
+
+    if (!success) {
+        throw new ApiError(404, "Dish not found or could not be deleted");
+    }
+
+    return responseOk(res, null, "Dish deleted successfully");
+});

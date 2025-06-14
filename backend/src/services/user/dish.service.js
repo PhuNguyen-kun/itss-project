@@ -10,10 +10,12 @@ const {
  * @param {Object} options - Query options
  * @param {Number} options.limit - Number of dishes to return
  * @param {Number} options.offset - Offset for pagination
+ * @param {String} options.search - Search term for dish name
  * @returns {Promise<Object>} - { count, rows } for findAndCountAll result
  */
 const getAllDishes = async (options = {}) => {
     const queryOptions = {
+        where: {},
         include: [
             {
                 model: DishIngredient,
@@ -28,6 +30,13 @@ const getAllDishes = async (options = {}) => {
         ],
         distinct: true,
     };
+
+    // Add search functionality if search parameter is provided
+    if (options.search) {
+        queryOptions.where.name = {
+            [sequelize.Op.like]: `%${options.search}%`,
+        };
+    }
 
     // Add pagination params if provided
     if (options.limit) {
@@ -114,8 +123,34 @@ const createDish = async (dishData) => {
     return result;
 };
 
+/**
+ * Delete a dish by ID
+ * @param {Number} id - The ID of the dish to delete
+ * @returns {Promise<Boolean>} - True if dish was deleted, false otherwise
+ */
+const deleteDish = async (id) => {
+    const result = await sequelize.transaction(async (t) => {
+        // First delete associated dish ingredients
+        await DishIngredient.destroy({
+            where: { dish_id: id },
+            transaction: t,
+        });
+
+        // Then delete the dish
+        const deleted = await Dish.destroy({
+            where: { id },
+            transaction: t,
+        });
+
+        return deleted > 0;
+    });
+
+    return result;
+};
+
 module.exports = {
     getAllDishes,
     getDishBySlug,
     createDish,
+    deleteDish,
 };

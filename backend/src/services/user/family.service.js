@@ -15,6 +15,14 @@ const getAllFamilies = async (options = {}) => {
         queryOptions.offset = options.offset;
     }
 
+    // Add search functionality
+    if (options.search) {
+        queryOptions.where = {
+            ...queryOptions.where,
+            name: { [require("sequelize").Op.like]: `%${options.search}%` },
+        };
+    }
+
     return await Family.findAndCountAll(queryOptions);
 };
 
@@ -28,7 +36,7 @@ const getFamilyById = async (id) => {
         include: [
             {
                 association: "users",
-                attributes: ["id", "full_name", "email"],
+                attributes: ["id", "full_name", "email", "family_role"],
             },
         ],
     });
@@ -72,6 +80,48 @@ const createFamily = async (familyName) => {
     });
 
     return family;
+};
+
+/**
+ * Update a family
+ * @param {Number} id - Family ID
+ * @param {Object} data - Family data to update
+ * @returns {Promise<Object>} - Updated family object
+ * @throws {Error} - If update fails
+ */
+const updateFamily = async (id, data) => {
+    const family = await Family.findByPk(id);
+
+    if (!family) {
+        return null;
+    }
+
+    await family.update(data);
+    return family;
+};
+
+/**
+ * Delete a family
+ * @param {Number} id - Family ID
+ * @returns {Promise<boolean>} - True if deletion was successful
+ */
+const deleteFamily = async (id) => {
+    const family = await Family.findByPk(id);
+
+    if (!family) {
+        return false;
+    }
+
+    // Update all users in this family to have null family_id
+    const { User } = require("../../../models");
+    await User.update(
+        { family_id: null, family_role: null },
+        { where: { family_id: id } }
+    );
+
+    // Delete the family
+    await family.destroy();
+    return true;
 };
 
 /**
@@ -140,6 +190,8 @@ module.exports = {
     getFamilyById,
     getFamilyByUserId,
     createFamily,
+    updateFamily,
+    deleteFamily,
     getUserById,
     addMembersToFamily,
 };

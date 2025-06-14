@@ -36,6 +36,22 @@ router.get("/:id", familyController.getFamilyById);
 router.post("/", verifyToken, familyController.createFamily);
 
 /**
+ * @route PUT /api/user/families/:id
+ * @desc Update a family
+ * @param {Number} id - Family ID
+ * @access Private
+ */
+router.put("/:id", verifyToken, familyController.updateFamily);
+
+/**
+ * @route DELETE /api/user/families/:id
+ * @desc Delete a family
+ * @param {Number} id - Family ID
+ * @access Private
+ */
+router.delete("/:id", verifyToken, familyController.deleteFamily);
+
+/**
  * @route POST /api/user/families/:id/members
  * @desc Add members to a family
  * @param {Number} id - Family ID

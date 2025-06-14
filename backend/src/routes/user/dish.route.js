@@ -26,4 +26,11 @@ router.get("/:slug", dishController.getDishBySlug);
  */
 router.post("/", verifyToken, dishController.createDish);
 
+/**
+ * @route DELETE /api/user/dishes/:id
+ * @desc Delete a dish by ID
+ * @access Private
+ */
+router.delete("/:id", verifyToken, dishController.deleteDish);
+
 module.exports = router;

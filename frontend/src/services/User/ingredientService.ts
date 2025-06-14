@@ -13,6 +13,7 @@ interface PaginationData {
 interface GetIngredientsParams {
   page?: number
   per_page?: number
+  search?: string
 }
 
 interface IngredientsResponse {
@@ -48,6 +49,20 @@ export const getIngredientById = async (
 ): Promise<{ success: boolean; message: string; data: Ingredient }> => {
   try {
     const response = await axiosInstance.get(`/user/ingredients/${id}`)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+/**
+ * Delete an ingredient by id
+ * @param id - Ingredient id
+ * @returns Promise with success status
+ */
+export const deleteIngredient = async (id: number): Promise<any> => {
+  try {
+    const response = await axiosInstance.delete(`/user/ingredients/${id}`)
     return response.data
   } catch (error) {
     throw error

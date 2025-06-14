@@ -4,6 +4,7 @@ import type { DishResponse, DishDetailResponse } from '@/types/User/dish'
 interface GetDishesParams {
   page?: number
   per_page?: number
+  search?: string
 }
 
 /**
@@ -100,6 +101,20 @@ export const createDish = async (dishData: CreateDishData): Promise<DishDetailRe
 export const getFavoriteDishes = async (params?: GetDishesParams) => {
   try {
     const response = await axiosInstance.get('/user/favorites', { params })
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+/**
+ * Delete a dish by id
+ * @param id - Dish id
+ * @returns Promise with success status
+ */
+export const deleteDish = async (id: number): Promise<any> => {
+  try {
+    const response = await axiosInstance.delete(`/user/dishes/${id}`)
     return response.data
   } catch (error) {
     throw error
